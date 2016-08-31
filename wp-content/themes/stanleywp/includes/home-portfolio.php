@@ -36,7 +36,7 @@ if ( $home_portfolio_query->posts ) :
 <!-- +++++ Projects Section +++++ -->
 
 <div class="container pt">
-  <div class="row mt centered">
+  <div class="row mt centered projects-row">
     
     <?php $home_portfolio_title = bi_get_data('home_portfolio_title') ? bi_get_data('home_portfolio_title') : __('Recent Work','gents'); ?>
     
@@ -48,10 +48,10 @@ if ( $home_portfolio_query->posts ) :
     ?>
     <!-- PORTFOLIO ITEM -->      
 
-    <div class="col-lg-4">
+    <div class="col-lg-4 project-item">
      <?php if ( has_post_thumbnail()) : ?>
      <a class="zoom green" href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>" >
-      <?php the_post_thumbnail(); ?>
+      <?php the_post_thumbnail( 'project-image' ); ?>
     </a>
   <?php endif; ?>
 

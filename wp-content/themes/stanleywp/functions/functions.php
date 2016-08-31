@@ -14,6 +14,7 @@
  */
 ?>
 <?php
+add_image_size( 'project-image', 300, 300, true );
 /**
  * Fire up the engines boys and girls let's start theme setup.
  */

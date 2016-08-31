@@ -14,10 +14,12 @@
  */
  ?>
  <?php get_header(); ?>
+<style type="text/css">
 
+
+</style>
  <div class="container pt">
-
-  <div class="row mt">
+	<div class="row mt">
     <div class="col-lg-6 col-lg-offset-3 centered">
       <?php if( rwmb_meta( 'wtf_portfolio_title' ) !== '' ) { ?>
       <?php echo rwmb_meta( 'wtf_portfolio_title' ); ?>
@@ -33,6 +35,7 @@
 
     </div>
   </div>
+  
 
   <?php
   $loop = new WP_Query(array('post_type' => 'portfolio', 'posts_per_page' => -1));
@@ -40,15 +43,15 @@
   ?>
 
 
-  <div class="row mt centered">
+  <div class="row mt centered projects-row">
 
     <?php if ( $loop ) : 
     while ( $loop->have_posts() ) : $loop->the_post(); ?>
 
-    <div class="col-lg-4">
+    <div class="col-lg-4 project-item">
      <?php if ( has_post_thumbnail()) : ?>
      <a class="zoom green" href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>" >
-      <?php the_post_thumbnail(); ?>
+      <?php the_post_thumbnail('thumbnail'); ?>
     </a>
   <?php endif; ?>
   

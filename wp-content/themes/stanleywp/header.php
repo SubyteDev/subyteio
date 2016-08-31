@@ -19,6 +19,14 @@
 <!--[if IE 8 ]>    <html class="no-js ie8" <?php language_attributes(); ?>> <![endif]-->
 <!--[if (gte IE 9)|!(IE)]><!--> <html class="no-js" <?php language_attributes(); ?>> <!--<![endif]-->
 <head>
+<style type="text/css">
+
+div#navbar-background {
+	background-image: url('<?php echo bi_get_data('custom_logo'); ?>');
+	background-position: center;
+	background-size: cover;
+}
+</style>
 
 <meta charset="<?php bloginfo('charset'); ?>" />
 <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
@@ -53,8 +61,9 @@
     <?php gents_in_header(); // header hook ?>
 
 <nav role="navigation">
-    <div class="navbar navbar-inverse navbar-static-top">
+    <div id="navbar-background" class="navbar navbar-inverse navbar-static-top">
         <div class="container">
+
            <!-- .navbar-toggle is used as the toggle for collapsed navbar content -->
             <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
@@ -63,16 +72,11 @@
               <span class="icon-bar"></span>
             </button>
 
-           <?php if( bi_get_data('custom_logo') !== '' ) { ?>
-            <div id="logo"><a href="<?php echo home_url(); ?>/" title="<?php bloginfo( 'name' ); ?>" rel="home">
-                <img src="<?php echo bi_get_data('custom_logo'); ?>" alt="<?php bloginfo( 'name' ) ?>" />
-            </a></div>
-            <?php } else { ?>
             <?php if (is_front_page()) { ?>
             <a class="navbar-brand" href="<?php bloginfo( 'url' ) ?>/" title="<?php bloginfo( 'name' ) ?>" rel="homepage"><b><?php bloginfo( 'name' ) ?></b></a>
             <?php } else { ?>
             <a class="navbar-brand" href="<?php bloginfo( 'url' ) ?>/" title="<?php bloginfo( 'name' ) ?>" rel="homepage"><b><?php bloginfo( 'name' ) ?></b></a>
-            <?php } } ?>
+            <?php } ?>
         </div>
           <div class="navbar-collapse collapse navbar-responsive-collapse">
 			   <?php
