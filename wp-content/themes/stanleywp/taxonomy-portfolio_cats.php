@@ -27,7 +27,7 @@
     <div class="col-lg-4">
        <?php if ( has_post_thumbnail()) : ?>
        <a class="zoom green" href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>" >
-          <?php the_post_thumbnail(); ?>
+          <?php the_post_thumbnail('project-image'); ?>
       </a>
   <?php endif; ?>
   

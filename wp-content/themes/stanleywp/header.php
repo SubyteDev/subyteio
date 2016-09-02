@@ -20,7 +20,6 @@
 <!--[if (gte IE 9)|!(IE)]><!--> <html class="no-js" <?php language_attributes(); ?>> <!--<![endif]-->
 <head>
 <style type="text/css">
-
 div#navbar-background {
 	background-image: url('<?php echo bi_get_data('custom_logo'); ?>');
 	background-position: center;
@@ -60,9 +59,10 @@ div#navbar-background {
    
     <?php gents_in_header(); // header hook ?>
 
-<nav role="navigation">
+<nav id="navbar-background" role="navigation">
+
     <div id="navbar-background" class="navbar navbar-inverse navbar-static-top">
-        <div class="container">
+        <div  class="container">
 
            <!-- .navbar-toggle is used as the toggle for collapsed navbar content -->
             <div class="navbar-header">
@@ -95,7 +95,7 @@ div#navbar-background {
 
           </div>
         </div>
-     </div>           
+     </div> 
 </nav>
            
  

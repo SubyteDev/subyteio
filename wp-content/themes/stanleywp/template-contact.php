@@ -46,11 +46,8 @@
     }
 
     if(!isset($hasError)) {
-        $emailTo = get_option('tz_email');
-        if (!isset($emailTo) || ($emailTo == '') ){
-            $emailTo = get_option('admin_email');
-        }
-        $subject = '[StanleyWP] From '.$name;
+        $emailTo = get_option('admin_email');
+        $subject = 'From '.$name;
         $body = "Name: $name \n\nEmail: $email \n\nComments: $comments";
         $headers = 'From: '.$name.' <'.$emailTo.'>' . "\r\n" . 'Reply-To: ' . $email;
 
