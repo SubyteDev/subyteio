@@ -15,6 +15,7 @@
 ?>
 <?php
 add_image_size( 'project-image', 300, 300, true );
+add_image_size( 'profile-image', 150, 150, true );
 /**
  * Fire up the engines boys and girls let's start theme setup.
  */
