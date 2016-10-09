@@ -98,7 +98,7 @@ if ( $home_portfolio_query->posts ) :
 
 
 <?php endwhile; else: ?>
-</div>
+</div><!-- /row -->
 
 
 <div class="error-not-found">Sorry, no portfolio entries for while.</div>
