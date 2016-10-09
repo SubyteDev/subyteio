@@ -23,7 +23,7 @@ if ( !function_exists('bi_create_post_types') ) {
 			  'labels' => apply_filters('bi_portfolio_labels', $portfolio_labels),
 			  'public' => true,
 			  'has_archive' => false,
-			  'supports' => array('title','editor','thumbnail','revisions','comments','custom-fields'),
+			  'supports' => array('title','editor','thumbnail','revisions','comments','custom-fields','author'),
 			  'query_var' => true,
 			  'rewrite' => array( 'slug' => $portfolio_slug ),
 			  'menu_icon' => get_template_directory_uri() . '/images/admin/icon-portfolio.png',
