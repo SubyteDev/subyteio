@@ -49,6 +49,47 @@
       <?php if(rwmb_meta('wtf_port_cats') == 'value1') {?>
       <p><bt><?php _e('Type','gents'); ?>: </span><?php echo get_the_term_list( get_the_ID(), 'portfolio_cats', '',', ',' ') ?></bt></p>
        <?php } ?>
+<!-- AUTHORS -->
+<?php $i = new CoAuthorsIterator(); ?>
+<?php while( $i->iterate() ) : ?>
+
+
+<!-- ONE USER -->
+<div class="col-lg-3">
+<?php $author_info = get_userdata( get_the_author_meta( 'ID' ) ); ?>
+
+     <a href="<?php echo get_author_posts_url( $author_info->ID ); ?>" title="<?php echo $author_info->display_name; ?>" >
+      <div class="profile-image">
+      <?php mt_profile_img( $author_info->ID ); ?>
+</div>
+    </a>
+<h3><?php echo $author_info->display_name; ?></h3>
+<h5 class="member-position"><i><?php echo cimy_uef_sanitize_content(get_cimyFieldValue($author_info->ID, 'position')); ?></i></h5>
+	<div class="member-contact-info">
+	<?php 
+		$linkedin= get_cimyFieldValue($author_info->ID, 'linkedin');
+		$twitter= get_cimyFieldValue($author_info->ID, 'twitter');
+		$github= get_cimyFieldValue($author_info->ID, 'github');
+		$instagram= get_cimyFieldValue($author_info->ID, 'instagram');
+		
+		echo "<a target=\"_blank\" href=\"mailto:" . get_the_author_meta( 'email' ) . "\"><i class=\"fa fa-envelope fa-fw fa-lg\"></i></a>";
+		if ($linkedin != NULL)
+			echo "<a target=\"_blank\" href=\"" . cimy_uef_sanitize_content($linkedin) . "\"><i class=\"fa fa-linkedin fa-fw fa-lg\"></i></a>";
+		if ($instagram != NULL)
+			echo "<a target=\"_blank\" href=\"" . cimy_uef_sanitize_content($instagram) . "\"><i class=\"fa fa-instagram fa-fw fa-lg\"></i></a>";
+		if ($twitter != NULL)
+			echo "<a target=\"_blank\" href=\"" . cimy_uef_sanitize_content($twitter) . "\"><i class=\"fa fa-twitter fa-fw fa-lg\"></i></a>";
+		if ($github != NULL)
+			echo "<a target=\"_blank\" href=\"" . cimy_uef_sanitize_content($github) . "\"><i class=\"fa fa-github fa-fw fa-lg\"></i></a>";
+	?>
+		
+	</div> 
+</div> <!-- /col -->
+<!-- /ONE USER-->
+
+
+<?php endwhile; ?>
+<!-- AUTHORS END-->
     </div><!-- col-lg-8 -->
   </div>
 </div><!-- container -->      

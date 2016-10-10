@@ -19,53 +19,64 @@
     <div class="col-lg-6 col-lg-offset-3 centered">
       <h3>MEMBERS</h3>
       <hr>
-
-
-      <?php if (have_posts()) : ?>
-
-      <?php while (have_posts()) : the_post(); ?>
-      <?php the_content(); ?>
-      <?php endwhile; ?> 
-    <?php endif; ?> 
-
     </div>
   </div>
   
 
   <?php
-  $loop = new WP_Query(array('post_type' => 'subyte_members', 'posts_per_page' => -1));
-  $count =0;
+
+	$wp_user_query = new WP_User_Query( array( 'role' => 'Author', 'orderby' => 'display_name', 'order' => 'ASC' ) );
+	$authors = $wp_user_query->get_results();
   ?>
 
 
-  <div class="row mt centered">
+  <div class="row mt centered top-buffer">
 
-    <?php if ( $loop ) : 
-    while ( $loop->have_posts() ) : $loop->the_post(); ?>
+<?php
+if (!empty($authors)) {
+    foreach ($authors as $author)
+    { 
+	$author_info = get_userdata($author->ID);
+?>
+	<!-- ONE USER -->
+<div class="col-lg-3 top-buffer">
 
-    <div class="col-lg-3">
-     <?php if ( has_post_thumbnail()) : ?>
-     <a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>" >
+     <a href="<?php echo get_author_posts_url( $author_info->ID ); ?>" title="<?php echo $author_info->display_name; ?>" >
       <div class="profile-image">
-      <?php the_post_thumbnail('profile-image'); ?>
+      <?php mt_profile_img( $author_info->ID ); ?>
 </div>
     </a>
-  <?php endif; ?>
-<h4><?php the_title(); ?></h4>
-<h5 class="member-position"><i><?php echo get_post_meta(get_the_ID(), 'position', true); ?></i></h5>
-<div class="member-contact-info">
-<?php echo get_post_meta(get_the_ID(), 'contact-links-html', true); ?>
-</div> 
+<h3><?php echo $author_info->display_name; ?></h3>
+<h5 class="member-position"><i><?php echo cimy_uef_sanitize_content(get_cimyFieldValue($author_info->ID, 'position')); ?></i></h5>
+	<div class="member-contact-info">
+	<?php 
+		$linkedin= get_cimyFieldValue($author_info->ID, 'linkedin');
+		$twitter= get_cimyFieldValue($author_info->ID, 'twitter');
+		$github= get_cimyFieldValue($author_info->ID, 'github');
+		$instagram= get_cimyFieldValue($author_info->ID, 'instagram');
+		
+		echo "<a target=\"_blank\" href=\"mailto:" . get_the_author_meta( 'email' ) . "\"><i class=\"fa fa-envelope fa-fw fa-lg\"></i></a>";
+		if ($linkedin != NULL)
+			echo "<a target=\"_blank\" href=\"" . cimy_uef_sanitize_content($linkedin) . "\"><i class=\"fa fa-linkedin fa-fw fa-lg\"></i></a>";
+		if ($instagram != NULL)
+			echo "<a target=\"_blank\" href=\"" . cimy_uef_sanitize_content($instagram) . "\"><i class=\"fa fa-instagram fa-fw fa-lg\"></i></a>";
+		if ($twitter != NULL)
+			echo "<a target=\"_blank\" href=\"" . cimy_uef_sanitize_content($twitter) . "\"><i class=\"fa fa-twitter fa-fw fa-lg\"></i></a>";
+		if ($github != NULL)
+			echo "<a target=\"_blank\" href=\"" . cimy_uef_sanitize_content($github) . "\"><i class=\"fa fa-github fa-fw fa-lg\"></i></a>";
+	?>
+		
+	</div> 
 </div> <!-- /col -->
+<!-- /ONE USER-->
+<?php
+    }
+}
+?>
+    
 
 
-<?php endwhile; else: ?>
 </div>
-
-
-<div class="error-not-found">Sorry, no portfolio entries for while.</div>
-
-<?php endif; ?>
 
 
 
